@@ -10,7 +10,7 @@ function addProductToCart(product) {
 
   setLocalStorage("so-cart", cart);
 
-  console.log("Producto agregado al carrito:", product.Name);
+  console.log("Product added to the cart:", product.Name);
 }
 
 // add to cart button event handler!
