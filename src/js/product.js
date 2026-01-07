@@ -13,7 +13,7 @@ function addProductToCart(product) {
   console.log("Producto agregado al carrito:", product.Name);
 }
 
-// add to cart button event handler
+// add to cart button event handler!
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
