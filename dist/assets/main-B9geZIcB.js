@@ -1,8 +1,8 @@
-import{r}from"./utils-B_kqwxmC.js";import{P as s}from"./ProductData-D6Sl5V2y.js";class i{constructor(t,e,a){this.category=t,this.dataSource=e,this.listElement=a}async init(){const t=await this.dataSource.getData();this.renderList(t)}renderList(t){r(this.productCardTemplate.bind(this),this.listElement,t,"beforeend",!0)}productCardTemplate(t){return`
+import{r}from"./utils-B_kqwxmC.js";import{P as s}from"./ProductData-DPEgMD6K.js";class i{constructor(t,e,a){this.category=t,this.dataSource=e,this.listElement=a}async init(){const t=await this.dataSource.getData();this.renderList(t)}renderList(t){r(this.productCardTemplate.bind(this),this.listElement,t,"beforeend",!0)}productCardTemplate(t){return`
     <li class="product-card">
       <a href="product_pages/index.html?product=${t.Id}">
         <img
-          src="${t.Image.replace("../","/")}"
+          src="${t.Image.replace("../","")}"
           alt="${t.Name}"
         />
         <h3 class="card__brand">${t.Brand.Name}</h3>
