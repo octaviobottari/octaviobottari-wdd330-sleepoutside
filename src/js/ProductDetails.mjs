@@ -9,7 +9,6 @@ export default class ProductDetails {
 
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
-    
     this.renderProductDetails();
     
     document.getElementById('addToCart')
@@ -18,27 +17,21 @@ export default class ProductDetails {
 
   addToCart() {
     let cart = getLocalStorage('so-cart') || [];
-    
     cart.push(this.product);
-    
     setLocalStorage('so-cart', cart);
-    
-    console.log('Producto agregado:', this.product.Name);
+    console.log('Added to cart:', this.product.Name);
   }
 
   renderProductDetails() {
-    const productName = document.querySelector('.product-name');
-    const productImage = document.querySelector('.product-image');
-    const productPrice = document.querySelector('.product-price');
-    const productDescription = document.querySelector('.product-description');
+    const imageUrl = this.product.Images?.PrimaryLarge || this.product.Image || "";
+    
+    document.querySelector('.product-name').textContent = this.product.Name;
+    document.querySelector('.product-image').src = imageUrl;
+    document.querySelector('.product-image').alt = this.product.Name;
+    document.querySelector('.product-price').textContent = `$${this.product.FinalPrice || this.product.ListPrice || "0.00"}`;
+    document.querySelector('.product-description').textContent = this.product.DescriptionHtmlSimple || this.product.Description || "";
+    
     const productColors = document.querySelector('.product-colors');
-    
-    if (productName) productName.textContent = this.product.Name;
-    if (productImage) productImage.src = this.product.Image;
-    if (productImage) productImage.alt = this.product.Name;
-    if (productPrice) productPrice.textContent = `$${this.product.FinalPrice}`;
-    if (productDescription) productDescription.textContent = this.product.Description;
-    
     if (productColors && this.product.Colors) {
       productColors.innerHTML = this.product.Colors
         .map(color => `<option value="${color.ColorCode}">${color.ColorName}</option>`)

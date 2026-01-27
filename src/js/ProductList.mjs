@@ -8,7 +8,7 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
   }
 
@@ -23,20 +23,21 @@ export default class ProductList {
   }
 
   productCardTemplate(product) {
-    // CODIFICAR URL para caracteres especiales (~)
-    const imageUrl = encodeURI(product.Image.replace('../', '/'));
-  
-  return `
-  <li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
-      <img
-        src="${imageUrl}"
-        alt="${product.Name}"
-      />
-      <h3 class="card__brand">${product.Brand.Name}</h3>
-      <h2 class="card__name">${product.NameWithoutBrand || product.Name}</h2>
-      <p class="product-card__price">$${product.FinalPrice}</p>
-    </a>
-  </li>`;
-}
+    const imageUrl = product.Images?.PrimaryMedium || product.Image || "";
+    const encodedImageUrl = encodeURI(imageUrl);
+    
+    return `
+    <li class="product-card">
+      <a href="/product_pages/index.html?product=${product.Id}">
+        <img
+          src="${encodedImageUrl}"
+          alt="${product.Name}"
+          onerror="this.src='/images/placeholder.jpg'"
+        />
+        <h3 class="card__brand">${product.Brand?.Name || product.Brand || ""}</h3>
+        <h2 class="card__name">${product.NameWithoutBrand || product.Name}</h2>
+        <p class="product-card__price">$${product.FinalPrice || product.ListPrice || "0.00"}</p>
+      </a>
+    </li>`;
+  }
 }
