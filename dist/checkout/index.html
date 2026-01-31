@@ -3,21 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleep Outside | Checkout</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="module" crossorigin src="/assets/checkout-CyYAnjM9.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/utils-B8urrpqJ.js">
+    <title>Checkout | Sleep Outside</title>
+    <script
+      type="module"
+      crossorigin
+      src="/assets/checkout-iQCavNMZ.js"
+    ></script>
+    <link rel="modulepreload" crossorigin href="/assets/utils-CzYKsxI9.js" />
+    <link
+      rel="modulepreload"
+      crossorigin
+      href="/assets/ExternalServices-DxDLiG_F.js"
+    />
+    <link rel="stylesheet" crossorigin href="/assets/utils-BpBozTYq.css" />
   </head>
   <body>
-    <div id="main-header"></div>
+    <header id="main-header"></header>
 
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
+    <main class="checkout">
+      <h1>Checkout</h1>
+
+      <form name="checkout" id="checkoutForm">
+        <fieldset>
+          <legend>Billing Address</legend>
+          <label>
+            First Name:
+            <input type="text" name="fname" required />
+          </label>
+          <label>
+            Last Name:
+            <input type="text" name="lname" required />
+          </label>
+          <label>
+            Street Address:
+            <input type="text" name="street" required />
+          </label>
+          <label>
+            City:
+            <input type="text" name="city" required />
+          </label>
+          <label>
+            State:
+            <input
+              type="text"
+              name="state"
+              required
+              minlength="2"
+              maxlength="2"
+            />
+          </label>
+          <label>
+            ZIP Code:
+            <input type="text" name="zip" required pattern="[0-9]{5}" />
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Payment Information</legend>
+          <label>
+            Card Number:
+            <input type="text" name="cardNumber" required pattern="[0-9]{16}" />
+          </label>
+          <label>
+            Expiration Date (MM/YY):
+            <input
+              type="text"
+              name="expiration"
+              required
+              pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+            />
+          </label>
+          <label>
+            Security Code:
+            <input type="text" name="code" required pattern="[0-9]{3,4}" />
+          </label>
+        </fieldset>
+
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <div class="cart-items">
+            <!-- Cart items will be populated by JavaScript -->
+          </div>
+          <div class="cart-total">Total: $0.00</div>
+        </div>
+
+        <button type="button" id="checkoutSubmit" class="btn">
+          Place Order
+        </button>
+      </form>
     </main>
 
-    <div id="main-footer"></div>
-
+    <footer id="main-footer"></footer>
   </body>
 </html>
